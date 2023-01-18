@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.kheffache.produits.Repository.ProduitRepository;
+import com.kheffache.produits.Repository.categorieRepository;
+import com.kheffache.produits.models.Categorie;
 import com.kheffache.produits.models.Produit;
 
 @SpringBootTest
@@ -18,17 +20,23 @@ class ProduitsApplicationTests {
 	@Autowired
 	private ProduitRepository produitRepository;
 	
+	@Autowired
+	private categorieRepository categorieRepository;
+	
+	
+	
+	
 	
 	@Test
 	public void testCreateProduit() {
-		Produit prod = new Produit("PS 4",1000.0,new Date());
-	
+		Produit prod = new Produit("nokia",2900.00,new Date());
+		//Produit prod = new Produit()
 	produitRepository.save(prod);
 	
 	}
 	@Test
 	public void testFindProduit(){
-		Produit p = produitRepository.findById(1L).get();
+		Produit p = produitRepository.findById(4L).get();
 		System.out.println(p);
 	
 	}
@@ -57,7 +65,7 @@ class ProduitsApplicationTests {
 	@Test
 	public void testFindNomProduit(){
 		
-List<Produit> prods = produitRepository.findByNomProduit("PC Dell");
+		List<Produit> prods = produitRepository.findByNomProduit("PC Dell");
 		
 		for(Produit p:prods)
 			
@@ -67,22 +75,57 @@ List<Produit> prods = produitRepository.findByNomProduit("PC Dell");
 	@Test
 	public void testFindNomContains(){
 		
-List<Produit> prods = produitRepository.findByNomProduitContains("e");
+		List<Produit> prods = produitRepository.findByNomProduitContains("e");
 		
 		for(Produit p:prods)
 			
 		System.out.println(p);
 	
 	}
-	@Test public void testfindByNomPrix()
+	@Test public void testfindByNomPrix(){
+		List<Produit> prods = produitRepository.findByNomPrix("PS 4", 1000.0);
+		for (Produit p : prods)
+		{ System.out.println(p);
+		}
+		}
+	@Test
+	public void testfindByCategorie(){
+			
+		Categorie cat = new Categorie();
+		cat.setIdCat(4L);
+		List<Produit> prods = produitRepository.findByCategorie(cat);
+		for (Produit p : prods){
+		System.out.println(p);
+		}
+		
+	}
+	@Test
+		public void findByCategorieIdCat()
+		{
+		List<Produit> prods = produitRepository.findByCategorieIdCat(1L);
+		for (Produit p : prods)
+		{
+		System.out.println(p.getNomProduit());
+		}
+	}
+	
+	@Test
+	public void testfindByOrderByNomProduitAsc()
+		{
+		List<Produit> prods = produitRepository.findByOrderByNomProduitAsc();
+		for (Produit p : prods)
+		{
+		System.out.println(p.toString());
+		}
+	}
+	@Test
+	public void testTrierProduitsNomsPrix()
 	{
-	List<Produit> prods = produitRepository.findByNomPrix("PS 4", 1000.0);
+	List<Produit> prods = produitRepository.trierProduitsNomsPrix();
 	for (Produit p : prods)
 	{
 	System.out.println(p);
 	}
 	}
-	
-	
 
 }
