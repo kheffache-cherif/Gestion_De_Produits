@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 
+import com.kheffache.produits.models.Categorie;
 import com.kheffache.produits.models.Produit;
 
 @SpringBootApplication
@@ -19,7 +20,8 @@ public class ProduitsApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-			repositoryRestConfiguration.exposeIdsFor(Produit.class);
+			repositoryRestConfiguration.exposeIdsFor(Produit.class, Categorie.class);
+		
 	}
 
 }

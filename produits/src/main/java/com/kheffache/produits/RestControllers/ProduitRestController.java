@@ -22,6 +22,10 @@ public class ProduitRestController {
 	public ProduitService produitService;
 	
 	
+	@RequestMapping(method = RequestMethod.GET)
+	public List<Produit> getAllProduits(){
+		return produitService.getAllProduits();
+	}
 	
 	@RequestMapping(value="/{idProduit}",method = RequestMethod.GET)
 	public Produit getProduitById(@PathVariable("idProduit") Long id) {
@@ -49,5 +53,8 @@ public class ProduitRestController {
 	public List<Produit> getProduitsByCatId(@PathVariable("idCat") Long idCat) {
 		return produitService.findByCategorieIdCat(idCat);
 		}
-	
+	@RequestMapping(value="/prodsByName/{nom}",method = RequestMethod.GET)
+	public List<Produit> findByNomProduitContains(@PathVariable("nom") String nom) {
+		return produitService.findByNomProduitContains(nom);
+	}
 }

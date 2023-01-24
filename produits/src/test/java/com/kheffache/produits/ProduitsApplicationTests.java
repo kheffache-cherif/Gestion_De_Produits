@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.kheffache.produits.Repository.ProduitRepository;
-import com.kheffache.produits.Repository.categorieRepository;
+import com.kheffache.produits.Repository.CategorieRepository;
 import com.kheffache.produits.models.Categorie;
 import com.kheffache.produits.models.Produit;
 
@@ -21,7 +21,7 @@ class ProduitsApplicationTests {
 	private ProduitRepository produitRepository;
 	
 	@Autowired
-	private categorieRepository categorieRepository;
+	private CategorieRepository categorieRepository;
 	
 	
 	
